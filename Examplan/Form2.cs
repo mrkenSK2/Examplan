@@ -37,7 +37,7 @@ namespace Examplan
                 this.Plan.ColumnCount = days + 1;
                 this.Plan.RowCount = Convert.ToInt32(fm.subtextBox2.Text) + 1;
                 //this.Plan.Rows.Add(2, "太郎", fm.dateTimePicker1.Value.ToString("yyyy/MM/dd"));
-                this.Plan.Rows[0].Cells[0].Value = "科目/日付";
+                this.Plan.Rows[0].Cells[0].Value = "科目＼日付";
                 for (int i = 0; i < days; i++)
                 {
                     dtTmp = start.AddDays(i);
