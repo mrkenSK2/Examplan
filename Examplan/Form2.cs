@@ -24,7 +24,6 @@ namespace Examplan
 
         public Form2(Form1 fm, int flag)
         {
-            //string dayNumstr = fm.daytextBox1.Text;
             if (flag == 0)
             {
                 InitializeComponent();
@@ -36,7 +35,6 @@ namespace Examplan
                 DateTime dtTmp = DateTime.MinValue;
                 this.Plan.ColumnCount = days + 1;
                 this.Plan.RowCount = Convert.ToInt32(fm.subtextBox2.Text) + 1;
-                //this.Plan.Rows.Add(2, "太郎", fm.dateTimePicker1.Value.ToString("yyyy/MM/dd"));
                 this.Plan.Rows[0].Cells[0].Value = "科目＼日付";
                 for (int i = 0; i < days; i++)
                 {
@@ -50,9 +48,10 @@ namespace Examplan
                 InitializeComponent();
                 this.f1 = fm;
                 OpenFileDialog ofDialog = new OpenFileDialog();
-                ofDialog.InitialDirectory = @"C:\Users\nm124\source\repos\Examplan\data";
+                ofDialog.RestoreDirectory = true;
+                ofDialog.InitialDirectory = @"..\..\data";
                 ofDialog.Title = "開くファイルを選択してください";
-
+                
                 if (ofDialog.ShowDialog() == DialogResult.OK)
                 {
                     string path = ofDialog.FileName;
@@ -64,7 +63,7 @@ namespace Examplan
                     int row = 0;
                     while (!sr.EndOfStream)
                     {
-                        // CSVファイルの一行を読み込む
+                        // 一行読込
                         string line = sr.ReadLine();
                         string[] values = line.Split(',');
                         if (firstFlag == 0)
@@ -79,7 +78,6 @@ namespace Examplan
                         row++;
                     }
 
-                    // オブジェクト破棄
                     ofDialog.Dispose();
                 }
             }
@@ -97,28 +95,26 @@ namespace Examplan
         private void button1_Click(object sender, EventArgs e)
         {
             //explore
-            //System.Diagnostics.Process.Start("C:/"); // 「c直下」を開く
             SaveFileDialog sfd = new SaveFileDialog();
+            sfd.RestoreDirectory = true;
             sfd.FileName = ".csv";
-            sfd.InitialDirectory = @"C:\Users\nm124\source\repos\Examplan\data";
-            //[ファイルの種類]に表示される選択肢
+            sfd.InitialDirectory = @"..\..\data";
+            //選択肢
             sfd.Filter = "csvファイル(*.csv)|*.csv";
             sfd.FilterIndex = 0;
             //タイトル設定
             sfd.Title = "保存先のファイルを選択してください";
-            sfd.RestoreDirectory = true;
+            
             //ファイル上書き警告
             sfd.OverwritePrompt = true;
             //存在しないパスの警告
             sfd.CheckPathExists = true;
 
-            //ダイアログを表示する
+            //ダイアログ表示
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                string FilenameProperty = "@\"C:\\Users\\nm124\\source\\repos\\Examplan\\data\\" + sfd.FileName;
                 using (StreamWriter sw = new StreamWriter(sfd.FileName, false, System.Text.Encoding.Default))
                 {
-                    // ワーク文字列
                     string s = "";
 
                     for (int row = 0; row < Plan.RowCount; row++)
@@ -137,7 +133,7 @@ namespace Examplan
                         }
 
                     }
-                    // ワーク文字列をファイルに出力する
+                    // ファイルに出力
                     sw.Write(s);
                 }
             }
