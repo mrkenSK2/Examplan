@@ -30,5 +30,18 @@ namespace Examplan
             Form f2 = new Form2(this, 1);
             f2.Show();
         }
+
+        private void daytextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\b')
+            {
+                return;
+            }
+
+            if ((e.KeyChar < '0' || '9' < e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

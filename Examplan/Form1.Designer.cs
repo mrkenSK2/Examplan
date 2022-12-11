@@ -36,6 +36,7 @@
             this.subjects = new System.Windows.Forms.Label();
             this.subtextBox2 = new System.Windows.Forms.TextBox();
             this.openbutton = new System.Windows.Forms.Button();
+            this.warn = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // createButton
@@ -75,10 +76,13 @@
             // 
             // daytextBox1
             // 
+            this.daytextBox1.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.daytextBox1.Location = new System.Drawing.Point(146, 145);
             this.daytextBox1.Name = "daytextBox1";
+            this.daytextBox1.ShortcutsEnabled = false;
             this.daytextBox1.Size = new System.Drawing.Size(100, 22);
             this.daytextBox1.TabIndex = 5;
+            this.daytextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.daytextBox1_KeyPress);
             // 
             // subjects
             // 
@@ -91,10 +95,13 @@
             // 
             // subtextBox2
             // 
+            this.subtextBox2.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.subtextBox2.Location = new System.Drawing.Point(146, 174);
             this.subtextBox2.Name = "subtextBox2";
+            this.subtextBox2.ShortcutsEnabled = false;
             this.subtextBox2.Size = new System.Drawing.Size(100, 22);
             this.subtextBox2.TabIndex = 7;
+            this.subtextBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.daytextBox1_KeyPress);
             // 
             // openbutton
             // 
@@ -106,11 +113,21 @@
             this.openbutton.UseVisualStyleBackColor = true;
             this.openbutton.Click += new System.EventHandler(this.openbutton_Click);
             // 
+            // warn
+            // 
+            this.warn.AutoSize = true;
+            this.warn.Location = new System.Drawing.Point(265, 162);
+            this.warn.Name = "warn";
+            this.warn.Size = new System.Drawing.Size(189, 15);
+            this.warn.TabIndex = 9;
+            this.warn.Text = "(半角数字の直接入力のみ可)";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.warn);
             this.Controls.Add(this.openbutton);
             this.Controls.Add(this.subtextBox2);
             this.Controls.Add(this.subjects);
@@ -135,6 +152,7 @@
         public System.Windows.Forms.TextBox subtextBox2;
         public System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button openbutton;
+        private System.Windows.Forms.Label warn;
     }
 }
 
